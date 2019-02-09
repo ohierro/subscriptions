@@ -1,0 +1,5 @@
+spring.data.mongodb.authentication-database=admin
+spring.data.mongodb.username=subscription
+spring.data.mongodb.password=subscriptionpassword
+spring.data.mongodb.host=db
+spring.data.mongodb.port=27017

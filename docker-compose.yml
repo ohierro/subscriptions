@@ -1,0 +1,73 @@
+version: '3'
+
+services:
+  zookeeper:
+    image: zookeeper
+    restart: always
+    hostname: zookeeper
+    ports:
+      - 2181:2181
+    environment:
+      ZOO_MY_ID: 1
+      ZOO_SERVERS: server.1=0.0.0.0:2888:3888
+    networks:
+      - internal
+
+  kafka:
+    image: wurstmeister/kafka
+    environment:
+      KAFKA_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_BROKER_ID: 1
+      KAFKA_DELETE_TOPIC_ENABLE: "true"
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    ports:
+      - 9092:9092
+    depends_on:
+      - zookeeper
+    networks:
+      - internal
+
+  db:
+    image: mongo
+    hostname: db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: subscription
+      MONGO_INITDB_ROOT_PASSWORD: subscriptionpassword
+    ports:
+      - 27017:27017
+    networks:
+      - internal
+
+  public:
+    build: public
+    networks:
+      - internal
+    ports:
+      - 8080:8080
+    depends_on:
+      - subscription
+
+  subscription:
+    build: subscription
+    networks:
+      - internal
+    depends_on:
+      - kafka
+      - db
+#    ports:
+#      - 8080:8080
+  mail:
+    build: mail
+    networks:
+      - internal
+    depends_on:
+      - kafka
+#    ports:
+#      - 8080:8080
+
+
+networks:
+  internal:
+  public:

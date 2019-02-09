@@ -1,0 +1,15 @@
+app:
+  subscription:
+    url: "http://subscription:8080/subscription/"
+server:
+  port: 8080
+---
+spring:
+  profiles: dev
+
+app:
+  subscription:
+    url: "http://localhost:8080/subscription/"
+
+server:
+  port: 8081

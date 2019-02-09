@@ -1,0 +1,31 @@
+spring:
+  data:
+    mongodb:
+      authentication-database: admin
+      username: subscription
+      password: subscriptionpassword
+      host: db
+      port: 27017
+
+kafka:
+  bootstrap-servers: "kafka:9092"
+  topic:
+    receiver: mail
+
+app:
+  mail:
+    from: "sample@test.com"
+    subject: "Hello %name. This is a sample subject"
+    message: "This is a sample template system. You're subscribed to %newsletter"
+
+server:
+  port: 8080
+---
+spring:
+  profiles: dev
+
+  data:
+    mongodb:
+      host: localhost
+kafka:
+  bootstrap-servers: "localhost:9092"
