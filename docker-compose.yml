@@ -15,6 +15,7 @@ services:
 
   kafka:
     image: wurstmeister/kafka
+    restart: always
     environment:
       KAFKA_LISTENERS: PLAINTEXT://kafka:9092
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
@@ -31,6 +32,7 @@ services:
 
   db:
     image: mongo
+    restart: always
     hostname: db
     environment:
       MONGO_INITDB_ROOT_USERNAME: subscription
@@ -42,6 +44,7 @@ services:
 
   public:
     build: public
+    restart: always
     networks:
       - internal
     ports:
@@ -51,23 +54,20 @@ services:
 
   subscription:
     build: subscription
+    restart: always
     networks:
       - internal
     depends_on:
       - kafka
       - db
-#    ports:
-#      - 8080:8080
   mail:
     build: mail
+    restart: always
     networks:
       - internal
     depends_on:
       - kafka
-#    ports:
-#      - 8080:8080
 
 
 networks:
   internal:
-  public:
