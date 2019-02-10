@@ -53,7 +53,7 @@ To make it, first, you need to build all the projects:
 $> mvn package
 ```
 
-Then, you only need to:
+Then, you only need to do:
 ```bash
 $> docker-compose build
 $> docker-compose up

@@ -42,15 +42,4 @@ public class SubscriptionController {
 
         return new ResponseEntity(SubscriptionResponse.builder().id(id).build(), HttpStatus.OK);
     }
-
-    @GetMapping(path = "/")
-    public ResponseBody findNewsletterSubscription(String newsletterId) {
-        return null;
-    }
-
-    @GetMapping("/{id}")
-    public ResponseBody findById(@PathVariable String id) {
-        manager.findByNewsletter("test");
-        return null;
-    }
 }
