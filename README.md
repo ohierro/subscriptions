@@ -5,7 +5,7 @@
 Application follow a microservices approach. Modules are:
 - Subscription service: Main service. Allow to create new subscription and generate a mail to final user
 - Mail service: Listen to request of mailing users
-- Public service: Act as proxy server to Subscription service
+- Public service: Acts as proxy server to Subscription service
 
 As you can see, in Subscription service are more methods implemented than only public subscription needs.
 The main intention is to allow internal applications to connect to this service to request some data about
@@ -21,7 +21,7 @@ To prevent access to this services, I've created a Public service, following pro
 expose only the methods I want.
 
 Communication between Subscription service and Mail service is done by a Kafka topic. This allow Subscription
-service to forgot about the process of sending mail, and only have to insert a message in the topic.
+service to forget about the process of sending mail, and only have to insert a message in the topic.
 
 This also prevent failures in subscription service by cause of mail service missfunction.
 
@@ -80,3 +80,5 @@ databse in the test should be a better way to do this.
 
 - Only Subscription service has enought test. The other services should
 have also tests.
+
+- A proposed CI pipeline can be found in ci.png
