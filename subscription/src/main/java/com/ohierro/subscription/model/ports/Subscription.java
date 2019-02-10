@@ -4,9 +4,10 @@ import lombok.*;
 
 import java.time.LocalDate;
 
-@Builder
+
 @Setter @Getter
 @ToString
+@Builder
 public class Subscription {
     @NonNull
     String email;

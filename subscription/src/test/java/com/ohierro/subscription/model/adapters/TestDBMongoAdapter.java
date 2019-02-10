@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
@@ -19,6 +20,7 @@ import static org.springframework.data.mongodb.core.query.Criteria.where;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
+@EmbeddedKafka
 public class TestDBMongoAdapter {
 
     @Autowired

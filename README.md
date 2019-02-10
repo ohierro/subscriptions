@@ -47,7 +47,13 @@ Libraries:
 In the main directoy you can found a docker-compose.yml. This file get up and running all infraestructure and
 services.
 
-To make it, you only need to:
+
+To make it, first, you need to build all the projects:
+```bash
+$> mvn package
+```
+
+Then, you only need to:
 ```bash
 $> docker-compose build
 $> docker-compose up
@@ -61,3 +67,16 @@ If you want to get up some individual service, you need to specify active profil
 $> java -Dspring.profiles.active=dev -jar target/service.jar
 ```
 
+## Notes
+- Client credentials to send mail are not configured, for this, mail service raises an exception when try to
+deliver mail
+
+- If you want to test subscription service, you need to map 8080 port in docker compose to allow access.
+
+- Swagger ui is published under /swagger-ui.html, and swagger definition under /v2/api-docs.json
+
+- Mongo test needs an active connection to run the integration tests. Starting
+databse in the test should be a better way to do this.
+
+- Only Subscription service has enought test. The other services should
+have also tests.

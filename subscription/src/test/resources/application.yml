@@ -2,3 +2,18 @@ kafka:
   bootstrap-servers: ${spring.embedded.kafka.brokers}
   topic:
     receiver: mail
+
+spring:
+  data:
+    mongodb:
+      authentication-database: admin
+      username: subscription
+      password: subscriptionpassword
+      host: localhost
+      port: 27017
+
+app:
+  mail:
+    from: "sample@test.com"
+    subject: "Hello %name. This is a sample subject"
+    message: "This is a sample template system. You're subscribed to %newsletter"
